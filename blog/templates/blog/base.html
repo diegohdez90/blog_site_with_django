@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Diego Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+  <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css"
+    media="screen" charset="utf-8">
+
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/preloader.css' %}">
+
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-brand" href="{% url 'post_list' %}">Blog</a>
+    <a class="nav-link" href="{% url 'about' %}">About me</a>
+    <a class="nav-link" href="https://github.com/diegohdez90">My Github</a>
+    <a class="nav-link" href="https://www.linkedin.com/in/diegoarturohdez">My Linkedin</a>
+  </nav>
+  <ul class="nav justify-content-end">
+    {%- if user.is_authenticated -%}
+    <li class="navbar-item">
+      <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
+    </li>
+    <li class="navbar-item">
+      <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
+    </li>
+    <li class="navbar-item">
+      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+    </li>
+    <li class="navbar-item">
+      <a class="nav-link" href="{% url 'logout' %}">Welcome: {{ user.username }}</a>
+    </li>
+    {% else %}
+    <li class="navbar-item">
+      <a class="nav-link" href="{% url 'login' %}">Login</a>
+    </li>
+    {%- endif -%}
+
+    <li class="nav-item">
+    </li>
+    <li class="nav-item">
+    </li>
+    <li class="nav-item">
+    </li>
+    <li class="nav-item">
+    </li>
+  </ul>
+  <div class="container">
+    <div class="row">
+      <div class="w-75">
+        {% block content%}
+
+        {% endblock %}
+      </div>
+      <div class="w-25"></div>
+    </div>
+  </div>
+</body>
+</html>
