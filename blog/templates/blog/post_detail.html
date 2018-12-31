@@ -1,0 +1,85 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div class="cs-blog-detail">
+    <div class="cs-main-post">
+      <figure><img onload="pagespeed.CriticalImages.checkImageForCriticality(this);" data-pagespeed-url-hash="2714250504"
+          alt="jobline-blog (8)" src="http://jobcareer.chimpgroup.com/jobdoor/wp-content/uploads/jobline-blog-8.jpg"></figure>
+    </div>
+    <div class="cs-post-title">
+      <div class="cs-author">
+        <!--
+        <figure>
+          <a href="http://jobcareer.chimpgroup.com/jobdoor/user/jobcareer-admin/"><img width="32" height="32" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+              data-pagespeed-url-hash="1229941675" class="avatar avatar-32 photo" srcset="http://1.gravatar.com/avatar/7a20fad302fc2dd4b4649dc5bdb3c463?s=64&amp;d=mm&amp;r=g 2x"
+              src="http://1.gravatar.com/avatar/7a20fad302fc2dd4b4649dc5bdb3c463?s=32&amp;d=mm&amp;r=g" alt=""></a>
+        </figure>-->
+        <div class="cs-text">
+          <span>Julia Andrason</span>
+        </div>
+      </div>
+      <div class="post-option">
+  
+        <span class="post-date"></i>{% if post.published_date %}
+          {{ post.published_date }}
+        {% else %}
+          <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+        {% endif %}</span>
+        <span class="post-comment"><a href="http://jobcareer.chimpgroup.com/jobdoor/experience-writing-for-producing-a-newscast/#comments"><i
+              class="cs-color icon-chat6"></i>4 Comments</a></span>
+        {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
+          <span class="fas fa-edit"></span>
+        </a>
+        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">
+          <span class="fas fa-trash-all"></span>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="cs-post-option-panel">
+      <div class="rich-editor-text">
+        <h3>{{ post.title|safe|linebreaksbr }}</h3>
+        {{ post.text|safe|linebreaksbr }}
+      </div>
+      <a class="btn btn-primary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
+      <section id="app" class="comments">
+        <h4>Comments</h4>
+        {% for comment in post.comments.all -%}
+          <article>
+            <img id="profile-photo" src="https://en.gravatar.com/userimage/18343163/3fd908393aedf6423ec12cacec9a1f50.jpg?size=200" />
+            <h4><a href="#">{{ comment.author }}</a></h4>
+            {% if user.is_authenticated or comment.approved_comment %}
+            <time>{{ comment.created_at }}</time>
+              {% if comment.approved_comment %}
+              <a class="btn btn-detault" href="{% url 'comment_remove' pk=comment.pk %}">
+                <span class="fas fa-trash-all"></span>
+              </a>
+              <a class="btn btn-primary" href="{% url 'comment_approve' pk=comment.pk %}">
+                <span class="fas fa-thumbs-up "></span>
+              </a>
+              {% endif %}
+            {% endif %}
+            
+            {{ comment.text|safe|linebreaks }}
+            {% empty %}
+            <p>No comments</p>
+          </article>
+        {% endfor-%}
+      </section>
+    </div>
+    <div class="cs-tags">
+      <div class="tags">
+        <span>Tags</span>
+        <ul>
+          <li><a rel="tag" href="http://jobcareer.chimpgroup.com/jobdoor/tag/college/">College</a></li>
+          <li><a rel="tag" href="http://jobcareer.chimpgroup.com/jobdoor/tag/job/">Job</a></li>
+          <li><a rel="tag" href="http://jobcareer.chimpgroup.com/jobdoor/tag/search/">Search</a></li>
+          <li><a rel="tag" href="http://jobcareer.chimpgroup.com/jobdoor/tag/teacher/">Teacher</a></li>
+        </ul>
+      </div>
+  
+    </div>
+  
+  </div>
+{% endblock %}

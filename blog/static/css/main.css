@@ -24,3 +24,8 @@ html, body {
     -webkit-filter: hue-rotate(-360deg);
   }
 }
+
+.center-elem {
+  margin-left: auto;
+  margin-right: auto;
+}

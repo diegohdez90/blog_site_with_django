@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="mx-auto">
+  Centered element
+</div>
+<div class="center-elem">
+  {% for post in post_list %}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{post.text}}</p>
+        <a href="{% url 'post_detail' pk=post.pk %}" class="card-link">See Post</a>
+        <a href="{% url 'post_detail' pk=post.pk %}" class="card-link">Comments: {{ post.approve_comments.count }}</a>
+      </div>
+      <div class="card-footer bg-transparent border-success">Published on: {{ post.published|date:"D M Y" }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
