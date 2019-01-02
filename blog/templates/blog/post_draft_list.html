@@ -2,4 +2,13 @@
 
 {% block content %}
 
+{% for post in posts %}
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">{{post.texttruncatechars: 50 }}</p>
+    </div>
+    <div class="card-footer bg-transparent border-success">Created at: {{ post.created_at|date:"d-m-Y" }}</div>
+  </div>
+{% endfor %}
 {% endblock %}
