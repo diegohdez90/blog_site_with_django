@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Diego Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{% static 'css/reset.css' %}">>
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
     crossorigin="anonymous">
@@ -16,46 +16,49 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css"
     media="screen" charset="utf-8">
 
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
   <link rel="stylesheet" href="{% static 'css/preloader.css' %}">
 
 </head>
 <body>
-  <nav class="nav">
-    <a class="nav-brand" href="{% url 'post_list' %}">Blog</a>
-    <a class="nav-link" href="{% url 'about' %}">About me</a>
-    <a class="nav-link" href="https://github.com/diegohdez90">My Github</a>
-    <a class="nav-link" href="https://www.linkedin.com/in/diegoarturohdez">My Linkedin</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <ul class="nav my-2 my-lg-0">
+      <li>
+        <a class="navbar-brand" href="{% url 'post_list' %}">Blog</a>
+      </li>
+      <l1>
+        <a class="nav-link" href="{% url 'about' %}">About me</a>
+      </l1>
+      <li>
+        <a class="nav-link" href="https://github.com/diegohdez90">My Github</a>
+      </li>
+      <li>
+        <a class="nav-link" href="https://www.linkedin.com/in/diegoarturohdez">My Linkedin</a>
+      </li>
+    </ul>
+    <ul class="nav my-2 my-lg-0">
+      {% if user.is_authenticated %}
+      <li class="navbar-item">
+        <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
+      </li>
+      <li class="navbar-item">
+        <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
+      </li>
+      <li class="navbar-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      <li class="navbar-item">
+        <a class="nav-link" href="{% url 'logout' %}">Welcome: {{ user.username }}</a>
+      </li>
+      {% else %}
+      <li class="navbar-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+      {% endif %}
+    </ul>
   </nav>
-  <ul class="nav justify-content-end">
-    {%- if user.is_authenticated -%}
-    <li class="navbar-item">
-      <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
-    </li>
-    <li class="navbar-item">
-      <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
-    </li>
-    <li class="navbar-item">
-      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-    </li>
-    <li class="navbar-item">
-      <a class="nav-link" href="{% url 'logout' %}">Welcome: {{ user.username }}</a>
-    </li>
-    {% else %}
-    <li class="navbar-item">
-      <a class="nav-link" href="{% url 'login' %}">Login</a>
-    </li>
-    {%- endif -%}
-
-    <li class="nav-item">
-    </li>
-    <li class="nav-item">
-    </li>
-    <li class="nav-item">
-    </li>
-    <li class="nav-item">
-    </li>
-  </ul>
   <div class="container">
     <div class="row">
       <div class="w-75">

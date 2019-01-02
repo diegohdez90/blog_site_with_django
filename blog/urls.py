@@ -11,6 +11,6 @@ urlpatterns = [
   url(r'^(?P<pk>\d+)/post/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
   url(r'^(?P<pk>\d+)/comment/approve/$', views.comment_approve, name='comment_approve'),
   url(r'^(?P<pk>\d+)/comment/remove/$', views.comment_remove, name='comment_remove'),
-  url(r'^(?P<pk>\d+).comment/publish/$', views.post_publish, name='post_publish'),
+  url(r'^(?P<pk>\d+)/comment/publish/$', views.post_publish, name='post_publish'),
   url(r'^about/$', views.AboutView.as_view(), name='about'),
 ]

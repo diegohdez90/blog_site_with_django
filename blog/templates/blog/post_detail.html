@@ -31,8 +31,8 @@
         <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
           <span class="fas fa-edit"></span>
         </a>
-        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">
-          <span class="fas fa-trash-all"></span>
+        <a class="btn btn-primary" href="{% url 'post_delete' pk=post.pk %}">
+          <span class="fas fa-trash-alt"></span>
         </a>
         {% endif %}
       </div>
@@ -45,7 +45,7 @@
       <a class="btn btn-primary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
       <section id="app" class="comments">
         <h4>Comments</h4>
-        {% for comment in post.comments.all -%}
+        {% for comment in post.comments.all %}
           <article>
             <img id="profile-photo" src="https://en.gravatar.com/userimage/18343163/3fd908393aedf6423ec12cacec9a1f50.jpg?size=200" />
             <h4><a href="#">{{ comment.author }}</a></h4>
@@ -65,7 +65,7 @@
             {% empty %}
             <p>No comments</p>
           </article>
-        {% endfor-%}
+        {% endfor %}
       </section>
     </div>
     <div class="cs-tags">
