@@ -15,7 +15,7 @@
               src="http://1.gravatar.com/avatar/7a20fad302fc2dd4b4649dc5bdb3c463?s=32&amp;d=mm&amp;r=g" alt=""></a>
         </figure>-->
         <div class="cs-text">
-          <span>Julia Andrason</span>
+          <span>{{ post.author }}</span>
         </div>
       </div>
       <div class="post-option">
@@ -25,8 +25,8 @@
         {% else %}
           <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}</span>
-        <span class="post-comment"><a href="http://jobcareer.chimpgroup.com/jobdoor/experience-writing-for-producing-a-newscast/#comments"><i
-              class="cs-color icon-chat6"></i>4 Comments</a></span>
+        <span class="post-comment"><i
+              class="cs-color icon-chat6"></i>{{ post.approve_comments.count }} comments</span>
         {% if user.is_authenticated %}
         <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
           <span class="fas fa-edit"></span>
@@ -39,7 +39,7 @@
     </div>
     <div class="cs-post-option-panel">
       <div class="rich-editor-text">
-        <h3>{{ post.title|safe|linebreaksbr }}</h3>
+        <h2>{{ post.title|safe|linebreaksbr }}</h2>
         {{ post.text|safe|linebreaksbr }}
       </div>
       <a class="btn btn-primary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
